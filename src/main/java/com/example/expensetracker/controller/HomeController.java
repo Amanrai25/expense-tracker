@@ -1,4 +1,4 @@
-package com.example.expensetracker.controller;
+/*package com.example.expensetracker.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,3 +11,4 @@ public class HomeController {
         return "index"; // this looks for templates/index.html
     }
 }
+*/
