@@ -27,7 +27,7 @@ public interface ExpenseMapper {
     @Select("SELECT * FROM expenses")
     List<Expense> getAllExpenses();
 } */
-package com.example.expensetracker.mapper;
+/*package com.example.expensetracker.mapper;
 
 import com.example.expensetracker.model.Expense;
 import org.apache.ibatis.annotations.Mapper;
@@ -45,6 +45,29 @@ public interface ExpenseMapper {
     void deleteExpenseById(int id);
 
 
+}
+*/
+package com.example.expensetracker.mapper;
+
+import com.example.expensetracker.model.Expense;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
+@Mapper
+public interface ExpenseMapper {
+
+    // ✅ Insert a new expense
+    void insertExpense(Expense expense);
+
+    // ✅ Get all expenses
+    List<Expense> getAllExpenses();
+
+    // ✅ Filter expenses by month (uses SQL in XML)
+    List<Expense> filterByMonth(@Param("month") String month);
+
+    // ✅ Delete an expense by its ID
+    void deleteExpenseById(@Param("id") int id);
 }
 
 

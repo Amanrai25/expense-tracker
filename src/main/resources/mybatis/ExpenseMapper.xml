@@ -1,25 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.expensetracker.mapper.ExpenseMapper">
 
+    <!-- ✅ Insert a new expense -->
     <insert id="insertExpense" parameterType="com.example.expensetracker.model.Expense">
         INSERT INTO expenses (title, amount, category, date)
         VALUES (#{title}, #{amount}, #{category}, #{date});
     </insert>
 
+    <!-- ✅ Get all expenses -->
     <select id="getAllExpenses" resultType="com.example.expensetracker.model.Expense">
-        SELECT * FROM expenses ORDER BY date DESC;
+        SELECT id, title, category, amount, date
+        FROM expenses
+        ORDER BY date DESC;
     </select>
+
+    <!-- ✅ Filter expenses by month (YYYY-MM format) -->
     <select id="filterByMonth" parameterType="string" resultType="com.example.expensetracker.model.Expense">
-    SELECT * FROM expenses WHERE TO_CHAR(date, 'YYYY-MM') = #{month}
-</select>
-   <delete id="deleteExpenseById" parameterType="int">
-    DELETE FROM expenses WHERE id = #{id}
-</delete>
-   
-  
+        SELECT id, title, category, amount, date
+        FROM expenses
+        WHERE TO_CHAR(date, 'YYYY-MM') = #{month}
+        ORDER BY date DESC;
+    </select>
+
+    <!-- ✅ Delete expense by ID -->
+    <delete id="deleteExpenseById" parameterType="int">
+        DELETE FROM expenses WHERE id = #{id};
+    </delete>
 
 </mapper>
